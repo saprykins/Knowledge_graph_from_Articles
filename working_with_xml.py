@@ -107,10 +107,10 @@ for child in root:  # level of articles
 # print(root[0][0].text) # doesn't work because out of range
 """
 
-"""
+'''
 doesn't show anything
 for article in root.findall("entry"):
     article_title = article.find("title").text
     article_bad_link = article.find("id").text
     print(article_title, article_bad_link)
-"""
+'''

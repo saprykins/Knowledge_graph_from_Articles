@@ -1,9 +1,9 @@
-# current version finds article's title, pdf link, all the authors
+# current version finds article's title, pdf link, all the authors from one record
 
 import xml.etree.ElementTree as ET
 
 tree = ET.parse(
-    r"C:\_My_Files\_FA\_ETUDES\Python\py-code\Fil_rouge\API_response_one_entry_only.xml"
+    "./API_response_one_entry_only.xml"
 )
 
 root = tree.getroot()
@@ -28,8 +28,6 @@ for child in root:
         # print(grand_child.tag)
         # print(grand_child.tag)
 
-        
-        
         # print(grand_child.text)
         # print(grand_child.tag)
         # print('--')
@@ -37,24 +35,19 @@ for child in root:
         # finds and updates article's link
         if grand_child.tag == '{http://www.w3.org/2005/Atom}id':
             article_link = grand_child.text
-            pdf_link = article_link.replace('http://arxiv.org/abs', 'http://arxiv.org/pdf')
+            pdf_link = article_link.replace(
+                'http://arxiv.org/abs', 'http://arxiv.org/pdf')
             print(pdf_link)
-        
-        
+
         # prints title of article
         if grand_child.tag == '{http://www.w3.org/2005/Atom}title':
             print(grand_child.text)
-            
+
         # printing authors
         # ::2 to avoid printing departments
         for grand_grand_child in grand_child[::2]:
             # acces to authors and their departments
-            print(grand_grand_child.text) 
-        
-
-
-
-
+            print(grand_grand_child.text)
 
 
 """
@@ -78,13 +71,6 @@ for child in root:
             # acces to authors and their departments
             print(grand_grand_child.text) 
 """
-
-
-
-
-
-
-
 
 
 """
